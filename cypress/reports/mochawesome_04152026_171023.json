@@ -1,0 +1,110 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-04-15T16:10:07.457Z",
+    "end": "2026-04-15T16:10:23.930Z",
+    "duration": 16473,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5f82e8bd-7938-494f-a4ce-ee87a4b9b5cc",
+      "title": "",
+      "fullFile": "cypress\\e2e\\registered_checkout.cy.js",
+      "file": "cypress\\e2e\\registered_checkout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6b7f4595-7cd0-448c-92a5-79e1225dded3",
+          "title": "US05: Kayıtlı Kullanıcı Ödeme Akışı",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Başarılı Ödeme Sayfası Doğrulaması",
+              "fullTitle": "US05: Kayıtlı Kullanıcı Ödeme Akışı Başarılı Ödeme Sayfası Doğrulaması",
+              "timedOut": null,
+              "duration": 16417,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// 1. Giriş Yap\n_LoginPage.default.openLoginPopup();\ncy.wait(1500); // Popup'ın açılması için bekleme\n_LoginPage.default.login('goksudaggunen@gmail.com', 'Kitap-Sepeti123!');\ncy.wait(1000); // Girişin işlenmesi için kısa ara\n// 2. Ürün Seçimi ve Sepete Ekleme\n_RegisteredCheckoutPage.default.firstProduct.should('be.visible').click({\n  force: true\n});\nif (cy.cleanUI) {\n  cy.cleanUI();\n}\n_RegisteredCheckoutPage.default.addToCartBtn.should('be.visible').click({\n  force: true\n});\ncy.wait(2000); // Sepete ekleme animasyonu\n// 3. Sepete Git\ncy.visit('/sepet');\nif (cy.cleanUI) {\n  cy.cleanUI();\n}\n_RegisteredCheckoutPage.default.buyNowBtn.should('be.visible').click({\n  force: true\n});\n// 4. Eğer sistem tekrar login isterse (Güvenlik yönlendirmesi)\ncy.url().then(url => {\n  if (url.includes('uye-giris')) {\n    _LoginPage.default.loginOnOrderPage('goksudaggunen@gmail.com', 'Kitap-Sepeti123!');\n  }\n});\n// 5. Adres Sayfası ve Devam Et\ncy.url({\n  timeout: 30000\n}).should('include', '/order');\n_RegisteredCheckoutPage.default.orderNextBtn.should('be.visible').click({\n  force: true\n});\n// 6. Ödeme Sayfası Doğrulaması\ncy.url({\n  timeout: 20000\n}).should('include', 'payment');\n_RegisteredCheckoutPage.default.iyzicoTab.should('be.visible');\ncy.log('✅ TEST BAŞARIYLA TAMAMLANDI');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<span>' to be 'visible'\n\nThis element `<span>` is not visible because it has CSS property: `position: fixed` and it's being covered by another element:\n\n`<div class=\"ccp---nb-interstitial-overlay\">...</div>`",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<span>' to be 'visible'\n\nThis element `<span>` is not visible because it has CSS property: `position: fixed` and it's being covered by another element:\n\n`<div class=\"ccp---nb-interstitial-overlay\">...</div>`\n    at Context.eval (webpack://kitapsepeti_automation/./cypress/e2e/registered_checkout.cy.js:48:34)",
+                "diff": null
+              },
+              "uuid": "63df476e-9c34-450f-9334-1e765b050148",
+              "parentUUID": "6b7f4595-7cd0-448c-92a5-79e1225dded3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "63df476e-9c34-450f-9334-1e765b050148"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 16417,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

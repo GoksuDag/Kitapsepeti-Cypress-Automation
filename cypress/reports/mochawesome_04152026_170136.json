@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-15T16:01:32.307Z",
+    "end": "2026-04-15T16:01:36.221Z",
+    "duration": 3914,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b908698e-7404-479b-9180-8ab4f9323b85",
+      "title": "",
+      "fullFile": "cypress\\e2e\\product_detail.cy.js",
+      "file": "cypress\\e2e\\product_detail.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "faeed4b0-83fd-4961-9e21-594f7e860e5a",
+          "title": "US03: Ürün Detay ve Sepet Süreci",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "AC1-AC6: Tüm Kriterleri Doğrula ve Süreci Bitir",
+              "fullTitle": "US03: Ürün Detay ve Sepet Süreci AC1-AC6: Tüm Kriterleri Doğrula ve Süreci Bitir",
+              "timedOut": null,
+              "duration": 3854,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// 1. Ürüne Git (AC1)\n_ProductDetailPage.default.goToFirstProduct();\n_ProductDetailPage.default.productTitle.should('be.visible');\n// 2. Detay Kontrolü (AC2 & AC3)\n_ProductDetailPage.default.verifyProductDetails();\n// 3. Sepete Ekle (AC4)\ncy.intercept('POST', '**/srv/service/cart/add-to-cart').as('addToCart');\n_ProductDetailPage.default.addToCartBtn.should('be.visible').click({\n  force: true\n});\n// 4. API ve Sepet Kontrolü (AC5 & AC6)\ncy.wait('@addToCart', {\n  timeout: 20000\n}).then(interception => {\n  expect(interception.response.statusCode).to.eq(200);\n  cy.wait(2000);\n  cy.reload();\n  cy.cleanUI();\n  // SAYAÇ KONTROLÜ\n  _ProductDetailPage.default.basketIcon.should('exist').then($el => {\n    const basketText = $el.text();\n    const countMatch = basketText.match(/\\d+/);\n    const count = countMatch ? parseInt(countMatch[0]) : 0;\n    expect(count, 'Sepet hala boş!').to.be.at.least(1);\n  });\n  // Onay Metni\n  cy.contains(/sepet|eklendi/i).should('exist');\n});",
+              "err": {},
+              "uuid": "ae2a47fc-1c25-4464-aa84-0c3fce2d4b3e",
+              "parentUUID": "faeed4b0-83fd-4961-9e21-594f7e860e5a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ae2a47fc-1c25-4464-aa84-0c3fce2d4b3e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3854,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-15T16:19:31.092Z",
+    "end": "2026-04-15T16:19:48.092Z",
+    "duration": 17000,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c6bb9aa8-ee16-4de2-91bd-88b32d495a7f",
+      "title": "",
+      "fullFile": "cypress\\e2e\\registered_checkout.cy.js",
+      "file": "cypress\\e2e\\registered_checkout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5ccf760f-2622-4a23-bc8c-995a4bab35d2",
+          "title": "US05: Kayıtlı Kullanıcı Ödeme Akışı",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Başarılı Ödeme Sayfası Doğrulaması",
+              "fullTitle": "US05: Kayıtlı Kullanıcı Ödeme Akışı Başarılı Ödeme Sayfası Doğrulaması",
+              "timedOut": null,
+              "duration": 16867,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// 1. Giriş Yap\n_LoginPage.default.openLoginPopup();\ncy.wait(1500);\n_LoginPage.default.login('goksudaggunen@gmail.com', 'Kitap-Sepeti123!');\ncy.wait(2000); // Girişin tam işlenmesi ve session'ın oturması için\n// 2. Ürün Seçimi ve Sepete Ekleme\n// Exist + Force:True kombinasyonu reklamların testi bozmasını engeller\n_RegisteredCheckoutPage.default.firstProduct.should('exist').click({\n  force: true\n});\n_RegisteredCheckoutPage.default.addToCartBtn.should('exist').click({\n  force: true\n});\ncy.wait(2000);\n// 3. Sepete Git\ncy.visit('/sepet');\n// Sepetteki \"Satın Al\" butonu\n_RegisteredCheckoutPage.default.buyNowBtn.should('exist').click({\n  force: true\n});\n// 4. Adres Sayfası ve Devam Et (Hata veren login kontrolü kaldırıldı)\ncy.url({\n  timeout: 30000\n}).should('include', '/order');\n// Adres sayfasındaki \"Devam Et\" butonu\n_RegisteredCheckoutPage.default.orderNextBtn.should('exist').click({\n  force: true\n});\n// 5. Ödeme Sayfası Doğrulaması\ncy.url({\n  timeout: 20000\n}).should('include', 'payment');\n_RegisteredCheckoutPage.default.iyzicoTab.should('exist'); // Görünürlük yerine varlık kontrolü daha güvenli\ncy.log('✅ TEST BAŞARIYLA TAMAMLANDI');",
+              "err": {},
+              "uuid": "cb2e73ea-e6aa-4854-b3ca-aff5f0141fe8",
+              "parentUUID": "5ccf760f-2622-4a23-bc8c-995a4bab35d2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cb2e73ea-e6aa-4854-b3ca-aff5f0141fe8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 16867,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-15T16:01:08.841Z",
+    "end": "2026-04-15T16:01:20.884Z",
+    "duration": 12043,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c5b9dc0a-a716-421f-b57f-6ec3cf459673",
+      "title": "",
+      "fullFile": "cypress\\e2e\\guest_checkout.cy.js",
+      "file": "cypress\\e2e\\guest_checkout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "cbd53c62-078c-467b-b85d-4165c7e42452",
+          "title": "US06: Misafir Olarak Satın Alma Akışı",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "AC1 - AC6: Misafir Formu Doldurma ve Adres Onaylama",
+              "fullTitle": "US06: Misafir Olarak Satın Alma Akışı AC1 - AC6: Misafir Formu Doldurma ve Adres Onaylama",
+              "timedOut": null,
+              "duration": 11993,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_GuestCheckoutPage.default.addToCartBtn.should('exist').click({\n  force: true\n});\ncy.wait(2000);\ncy.cleanUI();\n_GuestCheckoutPage.default.goToCartBtn.click({\n  force: true\n});\ncy.cleanUI();\n_GuestCheckoutPage.default.proceedToCheckoutBtn.should('be.visible').click({\n  force: true\n});\n_GuestCheckoutPage.default.guestContinueBtn.should('be.visible').click({\n  force: true\n});\ncy.wait(2000);\ncy.cleanUI();\n_GuestCheckoutPage.default.fullName.type('Test Kullanıcı', {\n  force: true\n});\n_GuestCheckoutPage.default.email.type('testuser@gmail.com', {\n  force: true\n});\n_GuestCheckoutPage.default.phone.type('5554443322', {\n  force: true\n});\n_GuestCheckoutPage.default.city.select('34', {\n  force: true\n});\ncy.wait(2000);\n_GuestCheckoutPage.default.town.should('not.be.disabled').select('937', {\n  force: true\n});\ncy.wait(2000);\n_GuestCheckoutPage.default.district.should('not.be.disabled').select('34435_35471', {\n  force: true\n});\n_GuestCheckoutPage.default.addressArea.type('Bülbül Mahallesi, Test Sokak No:123', {\n  force: true\n});\ncy.cleanUI();\n_GuestCheckoutPage.default.saveAddressBtn.should('be.visible').click({\n  force: true\n});\ncy.url({\n  timeout: 15000\n}).should('include', '/payment');",
+              "err": {},
+              "uuid": "e3946e7b-43c5-4b7a-8405-ef593ec6022e",
+              "parentUUID": "cbd53c62-078c-467b-b85d-4165c7e42452",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e3946e7b-43c5-4b7a-8405-ef593ec6022e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11993,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

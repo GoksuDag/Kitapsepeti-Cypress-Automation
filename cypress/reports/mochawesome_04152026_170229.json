@@ -1,0 +1,220 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-15T16:01:55.122Z",
+    "end": "2026-04-15T16:02:29.150Z",
+    "duration": 34028,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "77b4d852-2955-462d-8d38-0ebb9e78ea8d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\search_test.cy.js",
+      "file": "cypress\\e2e\\search_test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+          "title": "US02: Ürün Arama ve Listeleme Fonksiyonları",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "AC1 & AC2: Başarılı Arama Kontrolü",
+              "fullTitle": "US02: Ürün Arama ve Listeleme Fonksiyonları AC1 & AC2: Başarılı Arama Kontrolü",
+              "timedOut": null,
+              "duration": 3947,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_SearchPage.default.searchProduct('Sabahattin Ali');\ncy.url().should('include', 'arama');",
+              "err": {},
+              "uuid": "7d9fb6dc-fb2a-430b-a33e-20142980e5ef",
+              "parentUUID": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "AC3: Negatif Arama - Sonuç Yok Kontrolü",
+              "fullTitle": "US02: Ürün Arama ve Listeleme Fonksiyonları AC3: Negatif Arama - Sonuç Yok Kontrolü",
+              "timedOut": null,
+              "duration": 3911,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_SearchPage.default.searchProduct('asdfqwert12345');\ncy.get('body', {\n  timeout: 10000\n}).should($body => {\n  const text = $body.text().toLowerCase();\n  const hasNoProduct = !$body.find('.product-item').length;\n  expect(text.includes('bulunmadı') || text.includes('bulunamadı') || hasNoProduct).to.be.true;\n});",
+              "err": {},
+              "uuid": "3a02901d-0fe1-4503-94bb-405a12201bbf",
+              "parentUUID": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "AC4 & AC5: Ürün Kartı Detayları",
+              "fullTitle": "US02: Ürün Arama ve Listeleme Fonksiyonları AC4 & AC5: Ürün Kartı Detayları",
+              "timedOut": null,
+              "duration": 3576,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_SearchPage.default.searchProduct('Nutuk');\n_SearchPage.default.elements.productCards().first().within(() => {\n  cy.get('img').should('be.visible');\n  cy.get('.product-title, a').should('not.be.empty');\n  cy.get('[class*=\"price\"]').should('be.visible');\n  cy.contains(/Sepete|Ekle/i).should('exist');\n});",
+              "err": {},
+              "uuid": "ce94d10f-cfd3-461c-b276-c9c4ba8d9802",
+              "parentUUID": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "AC6: Sıralama Menüsü Kontrolü",
+              "fullTitle": "US02: Ürün Arama ve Listeleme Fonksiyonları AC6: Sıralama Menüsü Kontrolü",
+              "timedOut": null,
+              "duration": 11057,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_SearchPage.default.searchProduct('Roman');\n_SearchPage.default.elements.sortSelect().then($el => {\n  if ($el.is('select')) {\n    cy.wrap($el).select(1, {\n      force: true\n    });\n  } else {\n    cy.wrap($el).click({\n      force: true\n    });\n  }\n});",
+              "err": {},
+              "uuid": "1990ad5f-6e73-4d11-ab70-3b48c52f7cad",
+              "parentUUID": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "AC7: Filtreleme Paneli Kontrolü",
+              "fullTitle": "US02: Ürün Arama ve Listeleme Fonksiyonları AC7: Filtreleme Paneli Kontrolü",
+              "timedOut": null,
+              "duration": 3675,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_SearchPage.default.searchProduct('Kitap');\n_SearchPage.default.elements.filterPanel().should('exist').then($el => {\n  const pattern = /Kategori|Marka|Model|Filtre|Yayınevi/i;\n  expect($el.text()).to.match(pattern);\n});",
+              "err": {},
+              "uuid": "55662dad-876d-4de5-953d-ee4d58d601f7",
+              "parentUUID": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "AC8: Kategori Navigasyonu",
+              "fullTitle": "US02: Ürün Arama ve Listeleme Fonksiyonları AC8: Kategori Navigasyonu",
+              "timedOut": null,
+              "duration": 2144,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_SearchPage.default.elements.categoryLink().click({\n  force: true\n});\ncy.url({\n  timeout: 15000\n}).should('match', /roman|edebiyat|kategori/i);",
+              "err": {},
+              "uuid": "0d1c19f4-f73e-4d92-a398-8bac595264ce",
+              "parentUUID": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "AC9: Infinite Scroll (Sonsuz Kaydırma)",
+              "fullTitle": "US02: Ürün Arama ve Listeleme Fonksiyonları AC9: Infinite Scroll (Sonsuz Kaydırma)",
+              "timedOut": null,
+              "duration": 5525,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_SearchPage.default.searchProduct('Tarih');\n_SearchPage.default.elements.productCards().should('have.length.at.least', 1);\ncy.scrollTo('bottom');\ncy.wait(2000);\ncy.get('.product-item').its('length').should('be.gt', 2);",
+              "err": {},
+              "uuid": "235ce9b0-58ec-4bd2-918c-33be0c799fe6",
+              "parentUUID": "4903a4dc-4d95-4319-9a0d-7927759f525d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7d9fb6dc-fb2a-430b-a33e-20142980e5ef",
+            "3a02901d-0fe1-4503-94bb-405a12201bbf",
+            "ce94d10f-cfd3-461c-b276-c9c4ba8d9802",
+            "1990ad5f-6e73-4d11-ab70-3b48c52f7cad",
+            "55662dad-876d-4de5-953d-ee4d58d601f7",
+            "0d1c19f4-f73e-4d92-a398-8bac595264ce",
+            "235ce9b0-58ec-4bd2-918c-33be0c799fe6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 33835,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

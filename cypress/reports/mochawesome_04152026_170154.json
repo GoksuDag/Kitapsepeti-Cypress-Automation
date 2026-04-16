@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-15T16:01:37.266Z",
+    "end": "2026-04-15T16:01:54.073Z",
+    "duration": 16807,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3ac3a94f-1314-4ddb-84ee-f20b47aa41e3",
+      "title": "",
+      "fullFile": "cypress\\e2e\\registered_checkout.cy.js",
+      "file": "cypress\\e2e\\registered_checkout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9c6ce07e-aaf1-48db-adda-5a5b06cab786",
+          "title": "US05: Kayıtlı Kullanıcı Ödeme Akışı",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Başarılı Ödeme Sayfası Doğrulaması",
+              "fullTitle": "US05: Kayıtlı Kullanıcı Ödeme Akışı Başarılı Ödeme Sayfası Doğrulaması",
+              "timedOut": null,
+              "duration": 16627,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// 1. Giriş Yap\n_LoginPage.default.openLoginPopup();\ncy.wait(1500); // Popup'ın açılması için bekleme\n_LoginPage.default.login('goksudaggunen@gmail.com', 'Kitap-Sepeti123!');\ncy.wait(1000); // Girişin işlenmesi için kısa ara\n// 2. Ürün Seçimi ve Sepete Ekleme\n_RegisteredCheckoutPage.default.firstProduct.should('be.visible').click({\n  force: true\n});\nif (cy.cleanUI) {\n  cy.cleanUI();\n}\n_RegisteredCheckoutPage.default.addToCartBtn.should('be.visible').click({\n  force: true\n});\ncy.wait(2000); // Sepete ekleme animasyonu\n// 3. Sepete Git\ncy.visit('/sepet');\nif (cy.cleanUI) {\n  cy.cleanUI();\n}\n_RegisteredCheckoutPage.default.buyNowBtn.should('be.visible').click({\n  force: true\n});\n// 4. Eğer sistem tekrar login isterse (Güvenlik yönlendirmesi)\ncy.url().then(url => {\n  if (url.includes('uye-giris')) {\n    _LoginPage.default.loginOnOrderPage('goksudaggunen@gmail.com', 'Kitap-Sepeti123!');\n  }\n});\n// 5. Adres Sayfası ve Devam Et\ncy.url({\n  timeout: 30000\n}).should('include', '/order');\n_RegisteredCheckoutPage.default.orderNextBtn.should('be.visible').click({\n  force: true\n});\n// 6. Ödeme Sayfası Doğrulaması\ncy.url({\n  timeout: 20000\n}).should('include', 'payment');\n_RegisteredCheckoutPage.default.iyzicoTab.should('be.visible');\ncy.log('✅ TEST BAŞARIYLA TAMAMLANDI');",
+              "err": {},
+              "uuid": "d12d1054-a6d2-48bf-a3ce-2a272a63f5fd",
+              "parentUUID": "9c6ce07e-aaf1-48db-adda-5a5b06cab786",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d12d1054-a6d2-48bf-a3ce-2a272a63f5fd"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 16627,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

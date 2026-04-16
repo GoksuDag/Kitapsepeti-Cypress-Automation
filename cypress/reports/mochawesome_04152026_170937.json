@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-15T16:09:34.037Z",
+    "end": "2026-04-15T16:09:37.680Z",
+    "duration": 3643,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d82116d8-22c5-4a2c-9670-16f534813666",
+      "title": "",
+      "fullFile": "cypress\\e2e\\basket_test.cy.js",
+      "file": "cypress\\e2e\\basket_test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2f757df5-91ff-495d-98e9-76f9c85e7974",
+          "title": "Kitapsepeti - Boş Sepet Süreçleri",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "US_001: Sepet boşken \"ürün bulunmamaktadır\" yazısı doğrulanmalı",
+              "fullTitle": "Kitapsepeti - Boş Sepet Süreçleri US_001: Sepet boşken \"ürün bulunmamaktadır\" yazısı doğrulanmalı",
+              "timedOut": null,
+              "duration": 3614,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_CartPage.default.acceptCookies();\n_CartPage.default.clickCart();\ncy.wait(2000);\n_CartPage.default.verifyEmptyCart();",
+              "err": {},
+              "uuid": "f74c4faa-97da-4f07-8909-00c0bfb78e2c",
+              "parentUUID": "2f757df5-91ff-495d-98e9-76f9c85e7974",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f74c4faa-97da-4f07-8909-00c0bfb78e2c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3614,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
